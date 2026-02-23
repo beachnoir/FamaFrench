@@ -1,15 +1,17 @@
-/* Fix notebook output text visibility in light mode.
+/* ==========================================================================
+ * Fix notebook output text visibility in both light and dark modes.
  *
- * Thebe (live kernel) outputs use JupyterLab classes (.jp-RenderedText)
- * whose text color comes from --jp-content-font-color1.
- * The book-theme's Tailwind dark-mode toggling can cause the inherited
- * text color to clash with the output background.
+ * The MyST book-theme uses Tailwind's class-based dark mode:
+ *   <html class="light">  or  <html class="dark">
  *
- * Static (pre-rendered) outputs from --execute builds use .myst-code /
- * pre elements whose color also inherits from the page theme.
- */
+ * Thebe (live-kernel) outputs use JupyterLab classes (.jp-RenderedText,
+ * .jp-OutputArea-output) whose text color comes from --jp-content-font-color1.
+ *
+ * Pre-rendered outputs (from --execute builds) are dynamically injected into
+ * [data-name="outputs-container"] divs and also use JP classes.
+ * ========================================================================== */
 
-/* ── Light mode: ensure dark text in all output areas ── */
+/* ── Light mode (default): dark text on outputs ── */
 :root {
   --jp-content-font-color1: rgba(0, 0, 0, 0.87);
   --jp-content-font-color2: rgba(0, 0, 0, 0.54);
@@ -17,30 +19,34 @@
   --jp-ui-font-color1: rgba(0, 0, 0, 0.87);
 }
 
-/* ── Dark mode: ensure light text in all output areas ── */
-.dark {
-  --jp-content-font-color1: rgba(255, 255, 255, 0.87);
+/* ── Dark mode: light text on outputs ── */
+html.dark {
+  --jp-content-font-color1: rgba(255, 255, 255, 0.95);
   --jp-content-font-color2: rgba(255, 255, 255, 0.54);
   --jp-content-font-color3: rgba(255, 255, 255, 0.38);
   --jp-ui-font-color1: rgba(255, 255, 255, 0.87);
 }
 
-/* Thebe live-execution output: force correct text color */
-.jp-RenderedText pre {
-  color: var(--jp-content-font-color1) !important;
-}
+/* ── Force correct text colour in all output <pre> blocks ── */
 
+/* Thebe live-execution output */
+.jp-RenderedText pre,
 .jp-OutputArea-output pre {
   color: var(--jp-content-font-color1) !important;
 }
 
-/* Static pre-rendered output blocks (from --execute builds) */
+/* Pre-rendered output containers (execute-cache / MyST build) */
+[data-name="outputs-container"] pre {
+  color: var(--jp-content-font-color1) !important;
+}
+
+/* Static code blocks that appear inside notebook cells */
 .myst-code pre,
 .myst-code code {
   color: inherit;
 }
 
-/* Fallback: any pre inside the notebook block area */
+/* Fallback: any pre inside a notebook block area */
 .myst-jp-nb-block pre {
   color: var(--jp-content-font-color1, inherit);
 }
