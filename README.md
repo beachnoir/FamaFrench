@@ -1,6 +1,6 @@
 # Factor Investing: From Statistical Foundations to Fama-French Models
 
-A self-contained tutorial series on factor investing for undergraduate mathematics students. Every result is derived mathematically, demonstrated on data small enough to verify by hand, and then applied to real market data.
+A self-contained tutorial series on factor investing for anyone with an undergraduate-level background in probability and statistics. Key results are derived and demonstrated on data small enough to verify by hand, then applied to real market data.
 
 ## Notebooks
 
