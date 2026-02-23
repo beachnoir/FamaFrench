@@ -1,53 +1,83 @@
 /* ==========================================================================
  * Fix notebook output text visibility in both light and dark modes.
  *
- * The MyST book-theme uses Tailwind's class-based dark mode:
+ * Problem: The app CSS ships a highlight.js dark theme that applies
+ * unconditionally:  .hljs { background: #1e1e1e !important; color: #dcdcdc }
+ * This makes code blocks dark even in light mode.  Output containers
+ * rendered by Thebe/React inherit no explicit background, so they
+ * default to the page background, but various colour rules can still
+ * leave text nearly invisible.
+ *
+ * Strategy:
+ *   1. Set JupyterLab CSS variables for light / dark modes.
+ *   2. Force explicit background + text colour on output containers
+ *      and every element Thebe/React may inject inside them.
+ *   3. Keep .hljs (code input blocks) with the dark theme – that is
+ *      intentional – but ensure .myst-code pre does NOT bleed those
+ *      colours into sibling output containers.
+ *
+ * The MyST book-theme uses Tailwind class-based dark mode:
  *   <html class="light">  or  <html class="dark">
- *
- * Thebe (live-kernel) outputs use JupyterLab classes (.jp-RenderedText,
- * .jp-OutputArea-output) whose text color comes from --jp-content-font-color1.
- *
- * Pre-rendered outputs (from --execute builds) are dynamically injected into
- * [data-name="outputs-container"] divs and also use JP classes.
  * ========================================================================== */
 
-/* ── Light mode (default): dark text on outputs ── */
+/* ── 1. JupyterLab CSS variables ── */
 :root {
+  --jp-content-font-color0: rgba(0, 0, 0, 1);
   --jp-content-font-color1: rgba(0, 0, 0, 0.87);
   --jp-content-font-color2: rgba(0, 0, 0, 0.54);
   --jp-content-font-color3: rgba(0, 0, 0, 0.38);
   --jp-ui-font-color1: rgba(0, 0, 0, 0.87);
+  --jp-layout-color0: #fff;
+  --jp-layout-color1: #f8f8f8;
 }
 
-/* ── Dark mode: light text on outputs ── */
 html.dark {
+  --jp-content-font-color0: #fff;
   --jp-content-font-color1: rgba(255, 255, 255, 0.95);
   --jp-content-font-color2: rgba(255, 255, 255, 0.54);
   --jp-content-font-color3: rgba(255, 255, 255, 0.38);
   --jp-ui-font-color1: rgba(255, 255, 255, 0.87);
+  --jp-layout-color0: #111;
+  --jp-layout-color1: #212121;
 }
 
-/* ── Force correct text colour in all output <pre> blocks ── */
+/* ── 2. Output containers – explicit light bg + dark text ── */
 
-/* Thebe live-execution output */
+/* The wrapper that Thebe fills with rendered outputs */
+[data-name="outputs-container"] {
+  background-color: var(--jp-layout-color0) !important;
+  color: var(--jp-content-font-color1) !important;
+}
+
+/* Every element type Thebe/React may create inside the output */
+[data-name="outputs-container"] pre,
+[data-name="outputs-container"] div,
+[data-name="outputs-container"] span,
+[data-name="outputs-container"] p,
 .jp-RenderedText pre,
 .jp-OutputArea-output pre {
   color: var(--jp-content-font-color1) !important;
+  background-color: transparent !important;
 }
 
-/* Pre-rendered output containers (execute-cache / MyST build) */
-[data-name="outputs-container"] pre {
+/* Output area wrapper itself (JP widget) */
+.jp-OutputArea {
+  background-color: var(--jp-layout-color0) !important;
+}
+.jp-OutputArea-output {
+  background-color: transparent !important;
   color: var(--jp-content-font-color1) !important;
 }
 
-/* Static code blocks that appear inside notebook cells */
-.myst-code pre,
-.myst-code code {
-  color: inherit;
-}
+/* ── 3. Code input blocks – preserve dark hljs theme ── */
 
-/* Fallback: any pre inside a notebook block area */
-.myst-jp-nb-block pre {
-  color: var(--jp-content-font-color1, inherit);
-}
+/* .myst-code wraps the code cell; its <pre class="hljs"> already
+   gets a dark background from the app CSS .hljs rule (specificity 0,1,0).
+   Do NOT add any rule that targets .myst-code pre or similar, because
+   a higher-specificity selector would override the .hljs text colour
+   and produce dark text on a dark background.
+   
+   The output containers are handled in section 2 above via
+   [data-name="outputs-container"] pre with !important, so those
+   are separate from the code-block colour chain. */
 
