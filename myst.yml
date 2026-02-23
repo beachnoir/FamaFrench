@@ -12,6 +12,10 @@ project:
   #   - name: Your Name
   github: https://github.com/beachnoir/FamaFrench
 
+  # Enable launch buttons (Binder) and in-page live code execution
+  # Uses mybinder.org with this repo's requirements.txt for the environment
+  jupyter: true
+
   toc:
     - file: README.md
     - title: Notebooks
