@@ -10,7 +10,7 @@ project:
   #   - asset pricing
   # authors:
   #   - name: Your Name
-  github: https://github.com/<your-username>/FamaFrench
+  github: https://github.com/beachnoir/FamaFrench
 
   toc:
     - file: README.md

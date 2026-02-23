@@ -16,62 +16,26 @@ Work through these in order — each builds on the previous one.
 
 ## Read Online
 
-**[View the book on GitHub Pages &rarr;](https://<your-username>.github.io/FamaFrench/)**
+**[View the book on GitHub Pages &rarr;](https://beachnoir.github.io/FamaFrench/)**
 
-## Deployment (GitHub Pages from a private repo)
-
-The book is automatically built and published to GitHub Pages every time you push to `main`. The repo stays **private** — only the rendered site is public.
-
-### One-time setup
-
-1. **Push the repo to GitHub** (private):
-   ```bash
-   git remote add origin git@github.com:<your-username>/FamaFrench.git
-   git push -u origin main
-   ```
-
-2. **Enable GitHub Pages** — go to your repo on GitHub:
-   - **Settings → Pages**
-   - Under *Source*, select **GitHub Actions**
-
-3. **Wait for the first build** — the workflow (`.github/workflows/deploy-book.yml`) triggers automatically on push. Check progress in the **Actions** tab.
-
-4. Your site will be live at `https://<your-username>.github.io/FamaFrench/`.
-
-> **Note:** GitHub Pages is publicly accessible even when the repo is private (this requires a GitHub Pro, Team, or Enterprise plan). The source code remains private — only the built HTML is served.
-
-### How it works
-
-On every push to `main`, GitHub Actions will:
-1. Check out the code
-2. Install Python + Node.js + all dependencies
-3. Execute every notebook (so all outputs, plots, and tables appear)
-4. Build the static HTML site with Jupyter Book v2
-5. Deploy the HTML to GitHub Pages
-
-### Preview locally
+## Quick Start
 
 ```bash
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt -r requirements-book.txt
-jupyter-book build --execute --html    # build the site
-jupyter-book start                     # serve at http://localhost:3000
-```
-
-> `open _build/html/index.html` won't work — JB v2 is a JavaScript app that requires an HTTP server. Use `jupyter-book start` to preview locally.
-
-## Quick Start (notebooks only)
-
-If you just want to run the notebooks interactively (without building the book):
-
-```bash
-git clone <repo-url> && cd FamaFrench
+git clone https://github.com/beachnoir/FamaFrench.git && cd FamaFrench
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 jupyter notebook
 ```
 
 Requires Python 3.9+.
+
+### Preview the book locally
+
+```bash
+pip install -r requirements-book.txt
+jupyter-book build --execute --html
+jupyter-book start                     # opens at http://localhost:3000
+```
 
 ## Project Structure
 
