@@ -1,0 +1,60 @@
+# Factor Investing: From Statistical Foundations to Fama-French Models
+
+A self-contained tutorial series on factor investing for undergraduate mathematics students. Every result is derived mathematically, demonstrated on data small enough to verify by hand, and then applied to real market data.
+
+## Notebooks
+
+Work through these in order — each builds on the previous one.
+
+| # | Notebook | Topics |
+|---|----------|--------|
+| 1 | [Statistical Foundations](01_Statistical_Foundations.ipynb) | Descriptive stats, CLT (4 versions), hypothesis testing, OLS by hand, HC0 sandwich estimator, Newey-West HAC — all on a 5-observation dataset you can check by hand |
+| 2 | [Time-Series Foundations](02_Time_Series_Foundations.ipynb) | Prices vs returns, stationarity & ADF tests, ACF/PACF, Ljung-Box, volatility clustering & ARCH, ergodicity & mixing, full assumption stack for FF regressions |
+| 3 | [Fama-French 3-Factor Model](03_Fama_French_3Factor.ipynb) | FF3 theory, real data (Ken French + Yahoo Finance ETFs), OLS normal equations, statsmodels, R²/F-tests, diagnostics (JB, BP, DW, VIF), robust SEs, Newey-West, multi-ETF comparison (SPY/IWN/VTV) |
+| 4 | [Advanced Factor Models](04_Advanced_Factor_Models.ipynb) | FF5, Carhart 4-factor, Novy-Marx profitability, reversals, recent research (Chen & Zimmermann, Novy-Marx & Velikov, Wei Dai), practitioner perspectives (DFA, Avantis), rolling-window analysis |
+| 5 | [Solution Manual](05_Solution_Manual.ipynb) | Complete worked solutions to all 17 exercises from notebooks 01–04, with code, output interpretation, and explanations |
+
+## Quick Start
+
+```bash
+git clone <repo-url> && cd FamaFrench
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+jupyter notebook
+```
+
+Requires Python 3.9+.
+
+## Project Structure
+
+```
+FamaFrench/
+├── 01_Statistical_Foundations.ipynb
+├── 02_Time_Series_Foundations.ipynb
+├── 03_Fama_French_3Factor.ipynb
+├── 04_Advanced_Factor_Models.ipynb
+├── 05_Solution_Manual.ipynb
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+## Data Sources
+
+- **Fama-French factors**: Downloaded at runtime from [Kenneth French's Data Library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html)
+- **ETF prices** (SPY, IWN, VTV): Downloaded at runtime via [yfinance](https://github.com/ranaroussi/yfinance)
+
+No data files are committed to the repo — everything is fetched when you run the notebooks.
+
+## Key References
+
+- Fama & French (1993), "Common risk factors in the returns on stocks and bonds"
+- Fama & French (2015), "A five-factor asset pricing model"
+- Carhart (1997), "On persistence in mutual fund performance"
+- Novy-Marx (2013), "The other side of value: The gross profitability premium"
+- Newey & West (1987), "A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix"
+- Chen & Zimmermann (2022), "Open source cross-sectional asset pricing"
+
+## License
+
+This educational material is provided as-is for learning purposes.
