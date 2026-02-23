@@ -31,3 +31,4 @@ site:
   template: book-theme
   options:
     logo_text: Factor Investing
+    base_url: /FamaFrench
