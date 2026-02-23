@@ -1,0 +1,33 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+
+project:
+  title: "Factor Investing: From Statistical Foundations to Fama-French Models"
+  # description: A self-contained tutorial series on factor investing for undergraduate mathematics students.
+  # keywords:
+  #   - factor investing
+  #   - Fama-French
+  #   - asset pricing
+  # authors:
+  #   - name: Your Name
+  github: https://github.com/<your-username>/FamaFrench
+
+  toc:
+    - file: README.md
+    - title: Notebooks
+      children:
+        - file: 01_Statistical_Foundations.ipynb
+        - file: 02_Time_Series_Foundations.ipynb
+        - file: 03_Fama_French_3Factor.ipynb
+        - file: 04_Advanced_Factor_Models.ipynb
+        - file: 05_Solution_Manual.ipynb
+
+  exclude:
+    - venv/**
+    - _build/**
+    - .github/**
+
+site:
+  template: book-theme
+  options:
+    logo_text: Factor Investing

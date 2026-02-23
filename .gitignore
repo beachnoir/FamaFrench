@@ -51,3 +51,6 @@ MANIFEST
 *.pdf
 fama_french_*.png
 robust_se_comparison.png
+
+# Jupyter Book build output
+_build/

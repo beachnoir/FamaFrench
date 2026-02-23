@@ -14,7 +14,55 @@ Work through these in order — each builds on the previous one.
 | 4 | [Advanced Factor Models](04_Advanced_Factor_Models.ipynb) | FF5, Carhart 4-factor, Novy-Marx profitability, reversals, recent research (Chen & Zimmermann, Novy-Marx & Velikov, Wei Dai), practitioner perspectives (DFA, Avantis), rolling-window analysis |
 | 5 | [Solution Manual](05_Solution_Manual.ipynb) | Complete worked solutions to all 17 exercises from notebooks 01–04, with code, output interpretation, and explanations |
 
-## Quick Start
+## Read Online
+
+**[View the book on GitHub Pages &rarr;](https://<your-username>.github.io/FamaFrench/)**
+
+## Deployment (GitHub Pages from a private repo)
+
+The book is automatically built and published to GitHub Pages every time you push to `main`. The repo stays **private** — only the rendered site is public.
+
+### One-time setup
+
+1. **Push the repo to GitHub** (private):
+   ```bash
+   git remote add origin git@github.com:<your-username>/FamaFrench.git
+   git push -u origin main
+   ```
+
+2. **Enable GitHub Pages** — go to your repo on GitHub:
+   - **Settings → Pages**
+   - Under *Source*, select **GitHub Actions**
+
+3. **Wait for the first build** — the workflow (`.github/workflows/deploy-book.yml`) triggers automatically on push. Check progress in the **Actions** tab.
+
+4. Your site will be live at `https://<your-username>.github.io/FamaFrench/`.
+
+> **Note:** GitHub Pages is publicly accessible even when the repo is private (this requires a GitHub Pro, Team, or Enterprise plan). The source code remains private — only the built HTML is served.
+
+### How it works
+
+On every push to `main`, GitHub Actions will:
+1. Check out the code
+2. Install Python + Node.js + all dependencies
+3. Execute every notebook (so all outputs, plots, and tables appear)
+4. Build the static HTML site with Jupyter Book v2
+5. Deploy the HTML to GitHub Pages
+
+### Preview locally
+
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt -r requirements-book.txt
+jupyter-book build --execute --html    # build the site
+jupyter-book start                     # serve at http://localhost:3000
+```
+
+> `open _build/html/index.html` won't work — JB v2 is a JavaScript app that requires an HTTP server. Use `jupyter-book start` to preview locally.
+
+## Quick Start (notebooks only)
+
+If you just want to run the notebooks interactively (without building the book):
 
 ```bash
 git clone <repo-url> && cd FamaFrench
@@ -34,7 +82,11 @@ FamaFrench/
 ├── 03_Fama_French_3Factor.ipynb
 ├── 04_Advanced_Factor_Models.ipynb
 ├── 05_Solution_Manual.ipynb
-├── requirements.txt
+├── myst.yml                 ← Jupyter Book v2 / MyST config + TOC
+├── .github/workflows/
+│   └── deploy-book.yml      ← GitHub Actions: build + deploy to Pages
+├── requirements.txt         ← Runtime deps (numpy, pandas, statsmodels, …)
+├── requirements-book.txt    ← Book build deps (jupyter-book v2)
 ├── .gitignore
 └── README.md
 ```
@@ -44,7 +96,7 @@ FamaFrench/
 - **Fama-French factors**: Downloaded at runtime from [Kenneth French's Data Library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html)
 - **ETF prices** (SPY, IWN, VTV): Downloaded at runtime via [yfinance](https://github.com/ranaroussi/yfinance)
 
-No data files are committed to the repo — everything is fetched when you run the notebooks.
+No data files are committed to the repo — everything is fetched when the notebooks execute (locally or in CI).
 
 ## Key References
 
