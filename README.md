@@ -12,7 +12,8 @@ Work through these in order — each builds on the previous one.
 | 2 | [Time-Series Foundations](02_Time_Series_Foundations.ipynb) | Prices vs returns, stationarity & ADF tests, ACF/PACF, Ljung-Box, volatility clustering & ARCH, ergodicity & mixing, full assumption stack for FF regressions |
 | 3 | [Fama-French 3-Factor Model](03_Fama_French_3Factor.ipynb) | FF3 theory, real data (Ken French + Yahoo Finance ETFs), OLS normal equations, statsmodels, R²/F-tests, diagnostics (JB, BP, DW, VIF), robust SEs, Newey-West, multi-ETF comparison (SPY/IWN/VTV) |
 | 4 | [Advanced Factor Models](04_Advanced_Factor_Models.ipynb) | FF5, Carhart 4-factor, Novy-Marx profitability, reversals, recent research (Chen & Zimmermann, Novy-Marx & Velikov, Wei Dai), practitioner perspectives (DFA, Avantis), rolling-window analysis |
-| 5 | [Solution Manual](05_Solution_Manual.ipynb) | Complete worked solutions to all 17 exercises from notebooks 01–04, with code, output interpretation, and explanations |
+| 5 | [Practical Factor Investing](05_Practical_Factor_Investing.ipynb) | Dimensional & Avantis investment philosophies, Avantis UCITS ETFs (AVWS/AVWC/AVEM), FF5+Momentum regressions on daily data, portfolio construction, factor profiles, limitations of short samples |
+| 6 | [Solution Manual](06_Solution_Manual.ipynb) | Complete worked solutions to all exercises from notebooks 01–04, with code, output interpretation, and explanations |
 
 ## Read Online
 
@@ -45,7 +46,8 @@ FamaFrench/
 ├── 02_Time_Series_Foundations.ipynb
 ├── 03_Fama_French_3Factor.ipynb
 ├── 04_Advanced_Factor_Models.ipynb
-├── 05_Solution_Manual.ipynb
+├── 05_Practical_Factor_Investing.ipynb
+├── 06_Solution_Manual.ipynb
 ├── myst.yml                 ← Jupyter Book v2 / MyST config + TOC
 ├── .github/workflows/
 │   └── deploy-book.yml      ← GitHub Actions: build + deploy to Pages
