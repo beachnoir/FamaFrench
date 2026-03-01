@@ -48,7 +48,9 @@ FamaFrench/
 ├── 04_Advanced_Factor_Models.ipynb
 ├── 05_Practical_Factor_Investing.ipynb
 ├── 06_Solution_Manual.ipynb
+├── custom.css               ← Styling for the Jupyter Book
 ├── myst.yml                 ← Jupyter Book v2 / MyST config + TOC
+├── runtime.txt              ← Python version pin for hosted runtimes
 ├── .github/workflows/
 │   └── deploy-book.yml      ← GitHub Actions: build + deploy to Pages
 ├── requirements.txt         ← Runtime deps (numpy, pandas, statsmodels, …)
@@ -60,18 +62,9 @@ FamaFrench/
 ## Data Sources
 
 - **Fama-French factors**: Downloaded at runtime from [Kenneth French's Data Library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html)
-- **ETF prices** (SPY, IWN, VTV): Downloaded at runtime via [yfinance](https://github.com/ranaroussi/yfinance)
+- **ETF prices** (SPY, IWN, VTV, AAPL, IWM, and Avantis UCITS ETFs): Downloaded at runtime via [yfinance](https://github.com/ranaroussi/yfinance)
 
 No data files are committed to the repo — everything is fetched when the notebooks execute (locally or in CI).
-
-## Key References
-
-- Fama & French (1993), "Common risk factors in the returns on stocks and bonds"
-- Fama & French (2015), "A five-factor asset pricing model"
-- Carhart (1997), "On persistence in mutual fund performance"
-- Novy-Marx (2013), "The other side of value: The gross profitability premium"
-- Newey & West (1987), "A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix"
-- Chen & Zimmermann (2022), "Open source cross-sectional asset pricing"
 
 ## License
 
