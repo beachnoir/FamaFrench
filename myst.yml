@@ -17,7 +17,8 @@ project:
         - file: 02_Time_Series_Foundations.ipynb
         - file: 03_Fama_French_3Factor.ipynb
         - file: 04_Advanced_Factor_Models.ipynb
-        - file: 05_Solution_Manual.ipynb
+        - file: 05_Practical_Factor_Investing.ipynb
+        - file: 06_Solution_Manual.ipynb
 
   exclude:
     - venv/**
