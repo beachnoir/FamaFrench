@@ -9,6 +9,10 @@ project:
   # Uses mybinder.org with this repo's requirements.txt for the environment
   jupyter: true
 
+  # Do not execute notebooks during build — outputs only appear when users run cells
+  execute:
+    enabled: false
+
   toc:
     - file: README.md
     - title: Notebooks
