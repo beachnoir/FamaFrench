@@ -46,6 +46,9 @@ MANIFEST
 .AppleDouble
 .LSOverride
 
+# Holdings
+*.csv
+
 # Outputs
 *.png
 *.pdf
