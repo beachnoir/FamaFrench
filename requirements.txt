@@ -8,3 +8,4 @@ ipykernel
 jupyter
 pandas-datareader
 yfinance
+nbstripout
