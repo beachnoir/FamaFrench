@@ -27,8 +27,8 @@ def main():
     paths = [ROOT / p for p in args.notebooks] if args.notebooks else sorted(ROOT.glob('[0-9][0-9]_*.ipynb'))
     report = {'as_of': args.as_of, 'python': sys.version, 'offline': args.offline,
               'packages': {p: importlib.metadata.version(p) for p in ['numpy','pandas','scipy','statsmodels','yfinance','matplotlib','nbclient','nbformat']}, 'notebooks': []}
-    report_dir = ROOT / 'reports'
-    report_dir.mkdir(exist_ok=True)
+    report_dir = ROOT / '.local' / 'reports'
+    report_dir.mkdir(parents=True, exist_ok=True)
     destination = report_dir / f'execution_{args.as_of}.json'
     started = time.monotonic()
     for path in paths:

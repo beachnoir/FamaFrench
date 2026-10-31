@@ -20,5 +20,5 @@ if __name__ == "__main__":
         coverage(ticker, load_prices(ticker))
     for ticker in ["AVWS.DE", "AVWC.DE", "AVEM.DE", "IS3R.DE", "EURUSD=X"]:
         coverage(ticker, load_prices(ticker, start="2014-09-01"))
-    (ROOT / "reports").mkdir(exist_ok=True)
-    write_manifest(ROOT / "reports" / f"data_manifest_{AS_OF:%Y-%m-%d}.json")
+    (ROOT / ".local" / "reports").mkdir(parents=True, exist_ok=True)
+    write_manifest(ROOT / ".local" / "reports" / f"data_manifest_{AS_OF:%Y-%m-%d}.json")

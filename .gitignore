@@ -58,7 +58,7 @@ robust_se_comparison.png
 # Jupyter Book build output
 _build/
 
-# Dated public-data snapshots (manifest and notebook results are committed)
+# Dated public-data snapshots (executed notebook results are committed)
 data/cache/
 
 # Local credentials and private configuration
@@ -72,3 +72,7 @@ data/cache/
 *.pem
 *.p12
 *.pfx
+
+# Local execution and maintenance artifacts; not course content
+reports/
+.local/
