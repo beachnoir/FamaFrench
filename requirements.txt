@@ -1,11 +1,13 @@
-numpy
-pandas
-matplotlib
-seaborn
-scipy
-statsmodels
-ipykernel
-jupyter
-pandas-datareader
-yfinance
-nbstripout
+# Validated with the exact versions in reports/execution_2026-10-31.json.
+# Python 3.12+; bounded ranges permit maintenance updates.
+numpy>=2.0,<3
+pandas>=2.2,<4
+matplotlib>=3.9,<4
+seaborn>=0.13,<0.14
+scipy>=1.14,<2
+statsmodels>=0.14.6,<0.15
+yfinance>=1.1.0,<2
+ipykernel>=6.29,<8
+jupyter>=1.1,<2
+nbformat>=5.10,<6
+nbclient>=0.10,<0.11

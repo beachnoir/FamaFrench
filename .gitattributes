@@ -1,0 +1,2 @@
+# Keep executed results: the book renders saved notebook outputs without execution.
+*.ipynb -filter

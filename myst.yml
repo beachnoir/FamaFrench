@@ -9,12 +9,21 @@ project:
   # Uses mybinder.org with this repo's requirements.txt for the environment
   jupyter: true
 
-  # Do not execute notebooks during build — outputs only appear when users run cells
-  execute:
-    enabled: false
+  # Render committed outputs; refresh and execute with scripts/run_notebooks.py before building
+  # Execution is opt-in via --execute; the build command omits that flag.
+  # Official product page is indexed, but rejects this automated link checker.
+  # Keep the issue visible without blocking the book export.
+  error_rules:
+    - rule: link-resolves
+      severity: warn
+      keys:
+        - https://www.avantisinvestors.com/ucitsetf/avantis-global-small-cap-value-ucits-etf/
+  bibliography:
+    - references.bib
 
   toc:
     - file: README.md
+    - file: REVIEW.md
     - title: Notebooks
       children:
         - file: 01_Statistical_Foundations.ipynb
@@ -28,6 +37,10 @@ project:
     - venv/**
     - _build/**
     - .github/**
+    - data/**
+    - reports/**
+    - scripts/**
+    - tests/**
 
 site:
   template: book-theme

@@ -1,2 +1,1 @@
-# Dependencies for building the Jupyter Book site (used by GitHub Actions)
-jupyter-book>=2.0.0
+jupyter-book==2.1.2
