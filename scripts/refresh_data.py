@@ -18,7 +18,7 @@ if __name__ == "__main__":
     coverage("Beta deciles (VW)", load_beta_portfolios())
     for ticker in ["SPY", "IWN", "VTV", "IWM", "AAPL"]:
         coverage(ticker, load_prices(ticker))
-    for ticker in ["AVWS.DE", "AVWC.DE", "AVEM.DE", "IS3R.DE", "EURUSD=X"]:
+    for ticker in ["AVWS.DE", "AVWC.DE", "AVEM.DE", "EURUSD=X"]:
         coverage(ticker, load_prices(ticker, start="2014-09-01"))
     (ROOT / ".local" / "reports").mkdir(parents=True, exist_ok=True)
     write_manifest(ROOT / ".local" / "reports" / f"data_manifest_{AS_OF:%Y-%m-%d}.json")

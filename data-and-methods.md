@@ -13,7 +13,6 @@ The market-data cutoff is **31 October 2026**. Kenneth French's downloaded month
 | Advanced common ETF comparison | February 2004–September 2026 |
 | AVWS and AVWC regional regressions | November 2024–September 2026: 23 months |
 | AVEM regional regression | April 2025–September 2026: 18 months |
-| IWMO regional regression | November 2014–September 2026: 143 months |
 | Common UCITS portfolio comparison | April 2025–September 2026: 18 months |
 
 The available exchange-price history need not begin on a fund's inception date. In particular, AVEM's vendor history starts in March 2025; the first complete monthly return is April. No synthetic earlier fund returns are added.
@@ -34,7 +33,7 @@ FX can be carried forward for at most four calendar days. FX and exchange closes
 
 Factor data come from [Kenneth French's Data Library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html). Its published FF3 and FF5 SMB series have different constructions; comparisons preserve this difference. US research returns switched from CRSP FIZ to CIZ processing in January 2025. Current downloads can revise older observations, so a date cutoff does not recreate what investors knew at that date.
 
-Adjusted market prices are retrieved through [yfinance](https://ranaroussi.github.io/yfinance/). They approximate distribution-reinvested market-price returns, not independently reconciled fund-NAV returns. Large moves are flagged and retained. Early IWMO prices contain unresolved jumps; Chapter 5 shows a post-2018 sensitivity alongside the full history.
+Adjusted market prices are retrieved through [yfinance](https://ranaroussi.github.io/yfinance/). They approximate distribution-reinvested market-price returns, not independently reconciled fund-NAV returns. Large moves are flagged and retained. Chapter 5 compares the three Avantis funds on shared dates in the price charts and portfolio analysis, while regional regressions retain each fund’s available matched history.
 
 Applied regressions use Bartlett Newey–West covariance with the reported lag length, an $n/(n-k)$ correction and normal reference inference. The hand derivations explicitly identify uncorrected HC0/HAC calculations. Robust covariance does not remove model error, and the UCITS samples are too short for precise conclusions about persistent alpha.
 
